@@ -4,8 +4,20 @@
 
 cams = webcamlist;
 cam = webcam('USB');
-img = snapshot(cam);
-imshow(img)
+
+imgLow = snapshot(cam);
+
+resolutions = cam.AvailableResolutions;
+cam.Resolution = string(resolutions(length(resolutions)));
+
+imgHigh = snapshot(cam);
+figure()
+subplot(1, 2, 1)
+imshow(imgLow)
+subplot(1, 2, 2)
+imshow(imgHigh)
+
+preview(cam);
 
 %% Procesamiento
 

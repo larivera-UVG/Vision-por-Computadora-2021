@@ -16,22 +16,12 @@ function [corners, radii, metric] = findCorners(imgIn)
     thresholdStep = 0.1;
     circleThreshold = 0.65;
     largeContours = 0.15;
-    firstSweep = true;
     
     IBW=rgb2gray(imgIn);
 
     corners = [];
-    while(length(corners) ~= 4)
+    while(length(corners) <= 4)
         disp(strcat('Trying with\t', num2str(threshold)))
-        if(length(corners) > 4 && firstSweep)
-            return
-            thresholdStep = -0.01;
-            firstSweep = false;
-        elseif(thresholdStep == 1 && not(firstSweep))
-            return
-        elseif(length(corners) < 4)
-            thresholdStep = 0.1;
-        end
         
         threshold = threshold - thresholdStep;
            

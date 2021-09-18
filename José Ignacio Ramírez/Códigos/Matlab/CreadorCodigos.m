@@ -1,4 +1,4 @@
-function Cod = CreadorCodigos(num_codigo,filename)
+function Cod = CreadorCodigos(num_codigo)
 %CREADORCODIGOS Código que genera los marcadores para identificar los
 %robots en la mesa 
 
@@ -8,15 +8,9 @@ function Cod = CreadorCodigos(num_codigo,filename)
 %   para ubicar y rotar el marcador.
 %%
 %Inputs: num_codigo - Número de 1 a 255 para la generación del marcador
-% filename - Nombre que se le dará a la imagen para ser guardada.
 %Outputs: Cod - Matriz de la imagen generada.
 
 %%
-
-t = 0;
-n = 0;
-
-
 num = num_codigo; 
 binStr = dec2bin(num,8);
 %toma el valor y lo convierte en un string binario
@@ -24,7 +18,6 @@ binStr = dec2bin(num,8);
                 %y se garantiza que siempre sean 8 bits.
 
 k = 0; %parametro de control
-count = 0; %para el control del indice
 Cod = zeros(200,200, 'uint8'); %crea un array de zeros que sera la 
             %matriz donde se genera el codigo. Debe ser de tipo int de 8 bits
             %para que pueda reconocer los tonos de grises
@@ -61,6 +54,6 @@ for u = 0:2
         k = k + 1;
     end
 end
-imwrite(Cod,filename);
+%imwrite(Cod,filename);
 end
 
