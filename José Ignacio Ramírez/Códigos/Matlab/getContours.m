@@ -11,7 +11,7 @@ function [contours, lengths] = getContours(imgIn)
     contours = containers.Map();
     
     boundaries = bwboundaries(imgIn, 'noholes');
-    boundaries([1 2 length(boundaries)-1 length(boundaries)]) = [];
+%     boundaries([1 2 length(boundaries)-1 length(boundaries)]) = [];
     lengths = zeros(1, length(boundaries));
     for i = 1:length(boundaries)
         C = cell2mat(boundaries(i))';

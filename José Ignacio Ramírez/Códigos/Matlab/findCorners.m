@@ -11,7 +11,7 @@
 %   círculo encontrado (en el mismo orden que "corners"); 1 siendo un
 %   círculo perfecto
 
-function [corners, radii, metric] = findCorners(imgIn)
+function [corners, radii, metric, threshold] = findCorners(imgIn)
     threshold = 1.05;
     thresholdStep = 0.1;
     circleThreshold = 0.65;
@@ -20,7 +20,7 @@ function [corners, radii, metric] = findCorners(imgIn)
     IBW=rgb2gray(imgIn);
 
     corners = [];
-    while(length(corners) <= 4)
+    while(length(corners) < 4)
         disp(strcat('Trying with\t', num2str(threshold)))
         
         threshold = threshold - thresholdStep;
