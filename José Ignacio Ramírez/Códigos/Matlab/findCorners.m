@@ -14,7 +14,7 @@
 function [corners, radii, metric, threshold] = findCorners(imgIn)
     threshold = 1.05;
     thresholdStep = 0.1;
-    circleThreshold = 0.65;
+    circleThreshold = 0.75;
     largeContours = 0.15;
     
     IBW=rgb2gray(imgIn);
@@ -26,29 +26,32 @@ function [corners, radii, metric, threshold] = findCorners(imgIn)
         threshold = threshold - thresholdStep;
            
         BW = edge(IBW,'Canny',threshold);
-        boundaries = bwboundaries(BW,'noholes');
-        s = regionprops(BW, 'Perimeter');
+        BWFilled = imfill(BW, 'holes');
+        boundaries = bwboundaries(BWFilled,'noholes');
+        s = regionprops(BWFilled, 'Perimeter');
         perimeters = cat(1, s.Perimeter);
+        figure(1);clf
+        imshow(BWFilled)
         if(length(perimeters) > 1)
             IDs = 1:length(perimeters);
-            [perimeters, IDs] = dependentSort(perimeters', IDs);
+            [perimeters, IDs] = dependentSort(perimeters, IDs', 'descend');
             perimeters = perimeters';
             for perimeterID = 1:length(perimeters)-1
                 proportion = abs(perimeters(perimeterID)-perimeters(perimeterID+1))/perimeters(perimeterID);
                 if(proportion > largeContours)
+                    disp('Deleting')
                     contour = cell2mat(boundaries(IDs(perimeterID)));
-                    [BW] = deleteContour(contour',BW);
+                    [BWFilled] = deleteContour(contour',BWFilled);
                 end
             end
         end
-        BWFilled = imfill(BW, 'holes');
         warning ('off','all');
         s = regionprops(BWFilled, 'Perimeter');
         perimeters = cat(1, s.Perimeter);
         radii = perimeters/(2*pi());
+        disp(length(perimeters))
         [centers, radii, metric] = imfindcircles(BWFilled,[floor(min(radii)), ceil(max(radii))], 'Sensitivity', circleThreshold);
         corners = centers;
-        disp(length(corners))
         warning ('on','all');
     end
 end

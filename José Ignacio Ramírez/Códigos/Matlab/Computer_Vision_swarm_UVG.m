@@ -7,9 +7,15 @@
 %% Calibracion
 clear;clc
 
-load('Images.mat', 'I_goodLight_small');
+%load('Images.mat', 'I_goodLight_small');
 
-I = I_goodLight_small;
+cams = webcamlist;
+cam = webcam('USB');
+
+resolutions = cam.AvailableResolutions;
+cam.Resolution = string(resolutions(length(resolutions)));
+
+I = snapshot(cam);
 figure(2)
 imshow(I)
 
