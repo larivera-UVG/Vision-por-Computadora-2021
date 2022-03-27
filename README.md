@@ -120,5 +120,8 @@ Esto fue de gran utilidad al principio cuando se tuvo que desarrollar los progra
 #Python
 En la carpeta de [pruebas](José%20Ignacio%20Ramírez/Códigos/Python/Pruebas "pruebas") de Python se encuentran códigos experimentales de comunicación UDP y TCP tanto de cliente como de servidor. En el archivo [ReadMe.md](José%20Ignacio%20Ramírez/Códigos/Python/Pruebas/ReadMe.md "ReadMe.md") se encuentran listados los archivos y lo que hace cada uno. De igual manera, cada uno se encuentra debidamente comentado.
 
+#C
+Para instalación de OpenCV, se suigieron los pasos del vídeo en el siguiente [enlace](https://www.youtube.com/watch?=BBamKg5_JKI). Para instalación de QT, se utilizaron las instrucciones en el siguiente [enlace](https://www.youtube.com/watch?=7vDT2QesveU).
+
 #Documentos
 En la carpeta de [documentos](José%20Ignacio%20Ramírez/Documentos "documentos") se tiene diversos documentos del trabajo. En el archivo [ReadMe.md](José%20Ignacio%20Ramírez/Documentos/ReadMe.md "ReadMe.md") de dicho folder se encuentran listados los archivos y que es cada uno.
